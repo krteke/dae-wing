@@ -107,6 +107,14 @@ Use [GraphQL Playground](https://github.com/graphql/graphql-playground) for inte
 
 > 💡 **Tip:** Use [dae-outline2config](https://github.com/daeuniverse/dae-outline2config) to convert outlines to dae config format.
 
+### Export Selected dae Config
+
+```bash
+./dae-wing export -c /etc/daed -o config.dae
+# Or read a specific database file:
+./dae-wing export --db /path/to/wing.db -o config.dae
+```
+
 ## 🏗️ Architecture
 
 ### Config
