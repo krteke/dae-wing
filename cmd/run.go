@@ -144,7 +144,16 @@ var (
 				}
 			}()
 			sigs := make(chan os.Signal, 1)
-			signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM, syscall.SIGHUP, syscall.SIGQUIT, syscall.SIGKILL, syscall.SIGILL)
+
+			signal.Notify(
+				sigs,
+				syscall.SIGINT,
+				syscall.SIGTERM,
+				syscall.SIGHUP,
+				syscall.SIGQUIT,
+			)
+			defer signal.Stop(sigs)
+
 			for sig := range sigs {
 				_errorExit(errors.New(sig.String()))
 				return
