@@ -154,6 +154,17 @@ func (r *queryResolver) NodeLatencies(ctx context.Context, args *struct {
 	return node.QueryLatencies(ctx, args.IDs)
 }
 
+func (r *queryResolver) DefaultConfig() (*config.Resolver, error) {
+	c, err := dae.ParseConfig(nil, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &config.Resolver{
+		DaeGlobal: &c.Global,
+		Model:     &db.Config{},
+	}, nil
+}
+
 func (r *queryResolver) Configs(args *struct {
 	ID       *graphql.ID
 	Selected *bool
